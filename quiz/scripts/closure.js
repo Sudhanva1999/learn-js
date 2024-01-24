@@ -1,7 +1,7 @@
 function setColor(set) {
     console.log("Called")
     let changeColor = set;
-    return function () {
+    return () => {
         if (changeColor) {
             let userColor = document.getElementById('color').value;
             document.getElementById('myPara').style.color = userColor;
