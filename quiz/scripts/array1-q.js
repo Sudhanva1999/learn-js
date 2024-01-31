@@ -4,27 +4,24 @@ window.onload = function() {
     const btn = document.getElementById('btn');
     list.innerHTML = '';
 
-    const myHistory = [];
-    const MAX_HISTORY = 5;
+    let myHistory = [];
+    const myHistoryCopy = [];
+    const MAX_HISTORY = 6;
 
     btn.onclick = () => {
-    // we will only allow a term to be entered if the search input isn't empty
       if (inp.value !== '') {
-              // empty the list so that we don't display duplicate entries
-              // the display is regenerated every time a search term is entered.
-              list.innerHTML = '';
-
-              // loop through the sorted array, and display all the search terms in the list
-              for (const itemText of myHistoryCopy) {
-                
-              }
-
-              // If the array length is 5 or more, remove the oldest search term
+              myHistory.push(inp.value)
+              myHistoryCopy.push(inp.value)
               if (myHistory.length >= MAX_HISTORY) {
-                
+                myHistoryCopy.shift()
+                console.log(myHistoryCopy)
+                myHistory = [ ...myHistoryCopy]
               }
-
-              // empty the search input and focus it, ready for the next term to be entered
+              myHistory.sort(function(a,b){return a.length - b.length})   
+              list.innerHTML = '';
+              for (const itemText of myHistory) {
+                list.innerHTML += "<li>"+ itemText +"</li>"
+              }
               inp.value = '';
               btn.focus();
           }
