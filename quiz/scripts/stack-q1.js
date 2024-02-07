@@ -14,16 +14,28 @@ class PStack {
 class PStackImpl extends PStack {
   constructor() {
     super();
+    this._persons = []; // Initialize _persons as a private property
+  }
+
+  // Define the getter for the persons property
+  get persons() {
+    return this._persons;
+  }
+
+  // Define the setter for the persons property
+  set persons(value) {
+    this._persons = value;
   }
 
   push(p) {
-    return this._persons.push(p)
+    return this._persons.push(p);
   }
 
   pop() {
-    return this._persons.pop().age
+    return this._persons.pop().age;
   }
 }
+
 
 let pstack = new PStackImpl();
 pstack.persons = [{name: 'Jojo', age: 21}, {name: 'Gabi', age: 29}]
