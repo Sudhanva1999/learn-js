@@ -15,22 +15,31 @@
   <button onclick="calculateSquareRoots()">Calculate Square Roots</button>
 
   <script>
-    function calculateSquareRoots() {
-      // Get the input value and convert it to an array of numbers
-      const inputElement = document.getElementById('numbersInput');
-      const numbersString = inputElement.value;
-      const numbers = numbersString.split(',').map(Number);
+   function calculateSquareRoots() {
+  // Get the input value and convert it to an array of numbers
+  const inputElement = document.getElementById('numbersInput');
+  const numbersString = inputElement.value;
+  const numbers = numbersString.split(',').map(Number);
 
-      // Using map to calculate the square root of each number
-      // Use Math.sqrt(number) to calculate sq root
-      const squareRoots = numbers.map(number => {
-        return 0
-    });
-
-      // Displaying the original and transformed arrays
-      console.log('Original Numbers Array:', numbers);
-      console.log('Square Roots Array:', squareRoots);
+  // Using map to calculate the square root of each number
+  // Use Math.sqrt(number) to calculate sq root
+  const squareRoots = numbers.map(number => {
+    try {
+      if (number < 0) {
+        throw new Error(`Cannot calculate square root of negative number ${number}`);
+      }
+      return Math.sqrt(number);
+    } catch (error) {
+      console.error(error.message);
+      return NaN; // Return NaN for negative numbers
     }
+  });
+
+  // Displaying the original and transformed arrays
+  console.log('Original Numbers Array:', numbers);
+  console.log('Square Roots Array:', squareRoots);
+}
+
   </script>
 
 </body>
